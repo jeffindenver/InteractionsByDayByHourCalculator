@@ -32,7 +32,6 @@ public class InteractionsCalculator {
     void calculateInteractions() {
         //sums interactions in a time frame for a day of the week
         int hoursInDay = 24;
-        //hourByDayTotals = new int[24][7];
         hourByDayTotals = new int[7][24];
         int j = 0;
         DayOfWeek[] daysOfWeek = {DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
@@ -40,13 +39,13 @@ public class InteractionsCalculator {
         };
 
         for (DayOfWeek day : daysOfWeek) {
-            
+
             for (HalfhourCallStat item : callList) {
-                
+
                 if (item.getDate().getDayOfWeek().equals(day)) {
-                    
+
                     for (int i = 0; i < hoursInDay; i++) {
-                        
+
                         if (item.getTime().get(HOUR_OF_DAY) >= i && item.getTime().get(HOUR_OF_DAY) < i + 1) {
 
                             hourByDayTotals[j][i] += item.getInteractions();
@@ -65,11 +64,11 @@ public class InteractionsCalculator {
         callList = new ArrayList<>();
         for (int i = 0; i < sourceList.size(); i++) {
             line = sourceList.get(i).split(",");
-            
-            if (line.length > 2) {
+
+            if (line.length > 2 && !line[0].equals("")) {
                 //setDate()
                 date = LocalDate.parse(line[0], dateFormatter);
-              
+
                 //setHour()
                 time = LocalTime.parse(line[1], timeFormatter);
 
@@ -86,6 +85,7 @@ public class InteractionsCalculator {
             FileOps fo = new FileOps(filename, true);
             try {
                 sourceList = fo.readToList();
+                System.out.println("File read to list.");
             } catch (IOException e) {
                 System.err.println(e.getMessage());
             }
@@ -93,10 +93,12 @@ public class InteractionsCalculator {
     }
 
     void writeFile(String total) throws IOException {
-        FileOps fo = new FileOps("TestFile.csv", true);
+        String directory = System.getProperty("user.home");
+        String filepath = directory + "\\desktop\\sergeants_file.csv";
+        FileOps fo = new FileOps(filepath, true);
         fo.writeToFile(total);
     }
-    
+
     String writeTotals() {
         StringBuilder sb = new StringBuilder();
         //separate to writeHeader()
@@ -108,13 +110,12 @@ public class InteractionsCalculator {
         sb.append("Saturday,");
         sb.append("Sunday\n");
 
-        // This writes the hours across the column
-        // you need it to write the hours down the rows
         int j = 0;
         while (j < hourByDayTotals[0].length) {
             for (int i = 0; i < hourByDayTotals.length; i++) {
                 sb.append(hourByDayTotals[i][j]);
                 sb.append(",");
+                System.out.println("Total " + hourByDayTotals[i][j] + "appended to colmun " + i + " and row " + j);
             }
             sb.append("\n");
             j++;
