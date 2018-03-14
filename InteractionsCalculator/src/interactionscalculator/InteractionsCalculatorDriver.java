@@ -21,13 +21,14 @@ public class InteractionsCalculatorDriver {
         calculator.calculateInteractions();
         String totals = calculator.writeTotals();
         System.out.println(totals);
-        
+
         try {
             calculator.writeFile(totals);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        
+
+        System.out.println("Hit Enter To Continue...");
+        new java.util.Scanner(System.in).nextLine();
     }
-    
 }
