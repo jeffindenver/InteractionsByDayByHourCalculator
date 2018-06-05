@@ -2,7 +2,6 @@ package interactionscalculator;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -13,7 +12,6 @@ public class HalfhourCallStat {
     private LocalDate date;
     private LocalTime time;
     private String timeString;
-
     private int interactions;
 
     public HalfhourCallStat(LocalDate date, LocalTime time, int interactions) {
@@ -22,18 +20,11 @@ public class HalfhourCallStat {
         setInteractions(interactions);
     }
 
-    public int[] convertTimeToInt() {
-        timeString = time.format(DateTimeFormatter.ISO_LOCAL_TIME);
-        String[] hourString = timeString.split(":");
-        int[] hour = {Integer.parseInt(hourString[0]), Integer.parseInt(hourString[1])};
-        return hour;
-    }
-
     public LocalDate getDate() {
         return date;
     }
 
-    public final void setDate(LocalDate date) {
+    final void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -41,7 +32,7 @@ public class HalfhourCallStat {
         return time;
     }
 
-    public final void setTime(LocalTime time) {
+    final void setTime(LocalTime time) {
         this.time = time;
     }
 
@@ -49,7 +40,7 @@ public class HalfhourCallStat {
         return timeString;
     }
 
-    public void setTimeString(String timeString) {
+    void setTimeString(String timeString) {
         this.timeString = timeString;
     }
 
@@ -57,7 +48,7 @@ public class HalfhourCallStat {
         return interactions;
     }
 
-    public final void setInteractions(int interactions) {
+    final void setInteractions(int interactions) {
         this.interactions = interactions;
     }
 

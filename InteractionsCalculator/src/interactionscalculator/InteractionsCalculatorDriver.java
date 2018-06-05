@@ -1,32 +1,22 @@
 package interactionscalculator;
 
-import java.io.IOException;
-
 /**
- *
+ * Made primarily for the Sergeants monthly report, this program reads a CSV
+ * file with no header and three items per line: date, time, interactions.
+ * It sums the interactions by hour by day and writes a CSV file with a header.
  * @author JShepherd
  */
 public class InteractionsCalculatorDriver {
 
     /**
-     * @param args the command line arguments
+     * @param args the command line arguments.
+     *
      */
     public static void main(String[] args) {
+        InteractionsCalculatorView view = new InteractionsCalculatorView();
         InteractionsCalculator calculator = new InteractionsCalculator();
-
-        String prompt = "Enter the filename.";
-        calculator.setFilename(calculator.getUserInput(prompt));
-        calculator.readFile();
-        calculator.composeStats();
-        calculator.calculateInteractions();
-        String totals = calculator.writeTotals();
-        System.out.println(totals);
-
-        try {
-            calculator.writeFile(totals);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        InteractionsCalculatorController controller = new InteractionsCalculatorController(calculator, view);
+        controller.start();
 
         System.out.println("Hit Enter To Continue...");
         new java.util.Scanner(System.in).nextLine();
