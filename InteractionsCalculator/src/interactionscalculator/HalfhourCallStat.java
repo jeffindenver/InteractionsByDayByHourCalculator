@@ -51,5 +51,20 @@ public class HalfhourCallStat {
     final void setInteractions(int interactions) {
         this.interactions = interactions;
     }
+    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Date: ");
+        sb.append(date.toString());
+        sb.append("\n");
+        sb.append("Time: ");
+        sb.append(time.toString());
+        sb.append("\n");
+        sb.append("Interactions: ");
+        sb.append(interactions);
+        
+        return sb.toString();
+    }
 
 }
