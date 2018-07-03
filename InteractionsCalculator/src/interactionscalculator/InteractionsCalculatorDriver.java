@@ -8,10 +8,6 @@ package interactionscalculator;
  */
 public class InteractionsCalculatorDriver {
 
-    /**
-     * @param args the command line arguments.
-     *
-     */
     public static void main(String[] args) {
         InteractionsCalculatorView view = new InteractionsCalculatorView();
         InteractionsCalculator calculator = new InteractionsCalculator();
