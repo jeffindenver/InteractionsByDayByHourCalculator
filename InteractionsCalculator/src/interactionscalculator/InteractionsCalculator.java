@@ -61,7 +61,7 @@ public class InteractionsCalculator {
         boolean isValid = false;
         /**
          * The exported files have excess at the top including a header that
-         * should be skipped. This does not resolve the issue. Reconsider
+         * should be skipped. 
          */
         Pattern p = Pattern.compile("\\d");
         Matcher m = p.matcher(aString.substring(0, 1));
