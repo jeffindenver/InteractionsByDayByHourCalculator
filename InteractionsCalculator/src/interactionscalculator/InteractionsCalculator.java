@@ -9,6 +9,8 @@ import java.time.format.DateTimeFormatter;
 import static java.time.temporal.ChronoField.HOUR_OF_DAY;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -37,7 +39,11 @@ public class InteractionsCalculator {
         for (int i = 0; i < sourceList.size(); i++) {
             line = sourceList.get(i).split(",");
 
-            if (isValidStr(line)) {
+            if (line.length < 1) {
+                continue;
+            }
+
+            if (isValidStr(line[0])) {
 
                 date = LocalDate.parse(line[0], dateFormatter);
                 time = LocalTime.parse(line[1], timeFormatter);
@@ -45,24 +51,22 @@ public class InteractionsCalculator {
 
                 HalfhourCallStat call = new HalfhourCallStat(date, time, interactions);
                 callList.add(call);
+                //debugging statement
+                System.out.println("Added--\n" + call.toString());
             }
         }
     }
 
-    private boolean isValidStr(String[] strArr) {
+    private boolean isValidStr(String aString) {
         boolean isValid = false;
         /**
          * The exported files have excess at the top including a header that
          * should be skipped. This does not resolve the issue. Reconsider
          */
-        if (strArr[0].isEmpty()) {
-            return false;
-        }
-        if (strArr.length == 3) {
+        Pattern p = Pattern.compile("\\d");
+        Matcher m = p.matcher(aString.substring(0, 1));
+        if (m.find()) {
             isValid = true;
-        }
-        if (strArr[0].matches("[a-zA-Z]+")) {
-            isValid = false;
         }
         return isValid;
     }
