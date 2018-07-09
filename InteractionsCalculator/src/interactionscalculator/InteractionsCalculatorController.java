@@ -20,11 +20,11 @@ public class InteractionsCalculatorController {
 
     public void start() {
         String prompt = "Enter the filename.";
-        calculator.setFilename(view.getUserInput(prompt));
-        view.printMessage("Filename set to " + calculator.getFilename());
+        String filename = view.getUserInput(prompt);
+        view.printMessage("Filename set to " + filename);
         
         try {
-            calculator.readFile(); 
+            calculator.readFile(filename); 
         } catch (IOException e) {
             view.printError(e.getMessage());
         }
