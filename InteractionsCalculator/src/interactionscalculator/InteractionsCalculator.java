@@ -23,7 +23,6 @@ public class InteractionsCalculator {
     private List<String> sourceList;
     private List<HalfhourCallStat> callList;
     private int[][] hourByDayTotals;
-    private String filename;
 
     public InteractionsCalculator() {
         dateFormatter = DateTimeFormatter.ofPattern("M/d/yyyy");
@@ -35,6 +34,9 @@ public class InteractionsCalculator {
         LocalTime time;
         callList = new ArrayList<>();
 
+        //@Todo -- pull out a new function, "filter list" maybe, and pass
+        //the filtering criteria to the function and returning a filtered list.
+        
         String line[];
         for (int i = 0; i < sourceList.size(); i++) {
             line = sourceList.get(i).split(",");
@@ -58,11 +60,11 @@ public class InteractionsCalculator {
     }
 
     private boolean isValidStr(String aString) {
-        boolean isValid = false;
         /**
          * The exported files have excess at the top including a header that
-         * should be skipped. 
+         * should be skipped. regex "\d" resolves to any digit.
          */
+        boolean isValid = false;
         Pattern p = Pattern.compile("\\d");
         Matcher m = p.matcher(aString.substring(0, 1));
         if (m.find()) {
@@ -100,7 +102,7 @@ public class InteractionsCalculator {
         }
     }
 
-    void readFile() throws IOException {
+    void readFile(String filename) throws IOException {
         if (!filename.isEmpty()) {
             FileOps fo = new FileOps(filename, true);
 
@@ -140,14 +142,6 @@ public class InteractionsCalculator {
         sb.append("Friday,");
         sb.append("Saturday,");
         sb.append("Sunday\n");
-    }
-
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename;
     }
 
     public DateTimeFormatter getDateFormatter() {
