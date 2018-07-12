@@ -1,6 +1,7 @@
 package interactionscalculator;
 
 import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
 import java.awt.dnd.DropTargetDropEvent;
@@ -15,7 +16,6 @@ import java.util.List;
 public class InteractionsCalculatorController {
 
     private final InteractionsCalculator calculator;
-//    private final InteractionsCalculatorView view;
     private final CalculatorGUI view;
 
     public InteractionsCalculatorController(InteractionsCalculator calculator,
@@ -41,15 +41,19 @@ public class InteractionsCalculatorController {
             public synchronized void drop(DropTargetDropEvent evt) {
                 try {
                     evt.acceptDrop(DnDConstants.ACTION_COPY);
+                    
                     @SuppressWarnings("unchecked")
-                    List<File> droppedFiles = (List<File>) evt.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
+                    List<File> droppedFiles
+                            = (List<File>) evt.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
 
                     for (File file : droppedFiles) {
                         view.getTextArea().setText(file.toString());
                         processFile(file.toString());
                     }
-                } catch (Exception ex) {
-                    ex.printStackTrace();
+                } catch (UnsupportedFlavorException ufe) {
+                    view.printError(ufe.getMessage());
+                } catch (IOException ioe) {
+                    view.printError(ioe.getMessage());
                 }
             }
 
