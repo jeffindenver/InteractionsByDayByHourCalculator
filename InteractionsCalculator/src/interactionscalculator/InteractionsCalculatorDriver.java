@@ -12,12 +12,10 @@ package interactionscalculator;
 public class InteractionsCalculatorDriver {
 
     public static void main(String[] args) {
-        InteractionsCalculatorView view = new InteractionsCalculatorView();
+//        InteractionsCalculatorView view = new InteractionsCalculatorView();
+        CalculatorGUI view = new CalculatorGUI();
         InteractionsCalculator calculator = new InteractionsCalculator();
         InteractionsCalculatorController controller = new InteractionsCalculatorController(calculator, view);
         controller.start();
-
-        System.out.println("Hit Enter To Continue...");
-        new java.util.Scanner(System.in).nextLine();
     }
 }
