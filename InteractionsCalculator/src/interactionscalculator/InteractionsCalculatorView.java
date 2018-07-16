@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 /**
  * This class is no longer used. It's left here for review.
+ *
  * @author JShepherd
  */
 public class InteractionsCalculatorView {
