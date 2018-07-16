@@ -21,7 +21,7 @@ public class InteractionsCalculator {
     private final DateTimeFormatter dateFormatter;
     private final DateTimeFormatter timeFormatter;
     private List<String> sourceList;
-    private List<HalfhourCallStat> callList;
+    private List<HalfhourCallStat> finalList;
     private int[][] hourByDayTotals;
 
     public InteractionsCalculator() {
@@ -32,7 +32,7 @@ public class InteractionsCalculator {
     void composeStats() {
         LocalDate date;
         LocalTime time;
-        callList = new ArrayList<>();
+        finalList = new ArrayList<>();
 
         //@Todo -- pull out a new function, "filter list" maybe, and pass
         //the filtering criteria to the function and returning a filtered list.
@@ -53,7 +53,7 @@ public class InteractionsCalculator {
                 int interactions = (Integer.parseInt(line[2]));
 
                 HalfhourCallStat call = new HalfhourCallStat(date, time, interactions);
-                callList.add(call);
+                finalList.add(call);
                 //debugging statement
                 System.out.println("Added--\n" + call.toString());
             }
@@ -86,7 +86,7 @@ public class InteractionsCalculator {
 
         for (DayOfWeek day : daysOfWeek) {
 
-            for (HalfhourCallStat stat : callList) {
+            for (HalfhourCallStat stat : finalList) {
 
                 if (stat.getDate().getDayOfWeek().equals(day)) {
 
@@ -148,4 +148,5 @@ public class InteractionsCalculator {
     public DateTimeFormatter getDateFormatter() {
         return dateFormatter;
     }
+
 }
