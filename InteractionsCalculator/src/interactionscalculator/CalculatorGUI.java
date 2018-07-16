@@ -1,7 +1,6 @@
 package interactionscalculator;
 
 import java.awt.Insets;
-import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -30,10 +29,6 @@ public class CalculatorGUI {
      
         frame.add(scrollPane);
         frame.setVisible(true);        
-    }
-
-    void addListener(ActionListener dropListener, JTextArea textArea) {
-        //@TODO this
     }
 
     public JTextArea getTextArea() {
