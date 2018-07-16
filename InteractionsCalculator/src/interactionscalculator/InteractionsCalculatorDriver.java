@@ -12,7 +12,6 @@ package interactionscalculator;
 public class InteractionsCalculatorDriver {
 
     public static void main(String[] args) {
-//        InteractionsCalculatorView view = new InteractionsCalculatorView();
         CalculatorGUI view = new CalculatorGUI();
         InteractionsCalculator calculator = new InteractionsCalculator();
         InteractionsCalculatorController controller = new InteractionsCalculatorController(calculator, view);
