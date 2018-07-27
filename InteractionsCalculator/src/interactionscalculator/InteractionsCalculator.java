@@ -34,9 +34,6 @@ public class InteractionsCalculator {
         LocalTime time;
         finalList = new ArrayList<>();
 
-        //@Todo -- pull out a new function, "filter list" maybe, and pass
-        //the filtering criteria to the function and returning a filtered list.
-        //May call for a new class, "ListFilter." Or use a Stream.        
         String line[];
         for (int i = 0; i < sourceList.size(); i++) {
             line = sourceList.get(i).split(",");
