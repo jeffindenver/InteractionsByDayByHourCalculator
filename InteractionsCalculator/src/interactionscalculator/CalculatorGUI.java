@@ -1,5 +1,6 @@
 package interactionscalculator;
 
+import java.awt.Color;
 import java.awt.Insets;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -19,13 +20,16 @@ public class CalculatorGUI {
     public CalculatorGUI() {
         frame = new JFrame();
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        frame.setBounds(40, 40, 400, 400);
+        frame.setBounds(40, 40, 400, 200);
 
         textArea = new JTextArea("Drop files below for processing.");
         JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setOpaque(true);
         Insets inset = new Insets(20, 20, 20, 20);
         textArea.setMargin(inset);
         textArea.setEditable(false);
+        textArea.setBackground(Color.darkGray);
+        textArea.setForeground(Color.white);
 
         frame.add(scrollPane);
         frame.setVisible(true);
