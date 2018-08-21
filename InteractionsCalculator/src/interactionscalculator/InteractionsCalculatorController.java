@@ -23,7 +23,6 @@ public class InteractionsCalculatorController {
 
         this.calculator = calculator;
         this.view = view;
-
     }
 
     public void start() {
