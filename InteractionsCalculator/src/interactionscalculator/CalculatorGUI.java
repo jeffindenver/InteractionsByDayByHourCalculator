@@ -24,7 +24,7 @@ public class CalculatorGUI {
 
         textArea = new JTextArea("Drop files below for processing.");
         JScrollPane scrollPane = new JScrollPane(textArea);
-        scrollPane.setOpaque(true);
+        scrollPane.setOpaque(false);
         Insets inset = new Insets(20, 20, 20, 20);
         textArea.setMargin(inset);
         textArea.setEditable(false);
