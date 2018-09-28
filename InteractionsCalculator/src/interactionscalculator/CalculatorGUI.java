@@ -35,7 +35,7 @@ public class CalculatorGUI {
         frame.setVisible(true);
     }
 
-    public JTextArea getTextArea() {
+    JTextArea getTextArea() {
         return textArea;
     }
 
@@ -44,6 +44,6 @@ public class CalculatorGUI {
     }
 
     public void printMessage(String msg) {
-        textArea.setText(msg);
+        textArea.append(msg + "\n");
     }
 }
