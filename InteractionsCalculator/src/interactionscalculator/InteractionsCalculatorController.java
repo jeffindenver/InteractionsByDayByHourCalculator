@@ -49,10 +49,8 @@ public class InteractionsCalculatorController {
                         view.getTextArea().setText(file.toString());
                         processFile(file.toString());
                     }
-                } catch (UnsupportedFlavorException ufe) {
-                    view.printError(ufe.getMessage());
-                } catch (IOException ioe) {
-                    view.printError(ioe.getMessage());
+                } catch (UnsupportedFlavorException | IOException e) {
+                    view.printError(e.getMessage());
                 }
             }
 
